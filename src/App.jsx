@@ -1,6 +1,7 @@
 import './App.css';
 import ManageProgram from './components/ManageProgram';
 import ManageStudent from './components/ManageStudent';
+import QueryStudents from './components/QueryStudents';
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <ManageStudent />
       <hr />
       <ManageProgram />
+      <hr />
+      <QueryStudents />
     </div>
   );
 }
