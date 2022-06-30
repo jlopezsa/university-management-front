@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Input, Button } from './AtomicComponents';
+import { registerUser } from '../services/students';
 function ManageStudent() {
 
   const [ student, setStudent ] = useState({});
@@ -11,9 +12,10 @@ function ManageStudent() {
     });
   };
 
-  const handleCreateStudent = (e) => {
+  const handleCreateStudent = async (e) => {
     e.preventDefault();
-    console.log('Datos del estudiante: ', student);
+    const sendStudent = await registerUser(student)
+    console.log('Usuario registrado ', sendStudent);
   }
 
   return (
@@ -21,11 +23,10 @@ function ManageStudent() {
       <h2>Administración de datos del esudiante</h2>
       <h4>Ingrese los siguientes datos del estudiante</h4>
       <form action="">
-        <Input onChange={handleChange} type="text" name="userId" placeholder="Id" />
-        <Input onChange={handleChange} type="number" name="userCedula" placeholder="Cedula" />
-        <Input onChange={handleChange} type="text" name="userName" placeholder="Nombre" />
-        <Input onChange={handleChange} type="email" name="userEmail" placeholder="Email" />
-        <Input onChange={handleChange} type="tel" name="userPhone" placeholder="Telefono" />
+        <Input onChange={handleChange} type="number" name="cedula" placeholder="Cedula" />
+        <Input onChange={handleChange} type="text" name="name" placeholder="Nombre" />
+        <Input onChange={handleChange} type="email" name="email" placeholder="Email" />
+        <Input onChange={handleChange} type="tel" name="phone" placeholder="Telefono" />
         <Button onClick={handleCreateStudent}>Registrar estudiante</Button>
       </form>
     </div>
