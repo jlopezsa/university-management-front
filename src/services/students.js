@@ -21,3 +21,20 @@ export async function getUserByName(name) {
     throw new Error(error);
   }
 }
+
+export async function registerUser(student) {
+  const payload = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(student),
+  };
+  try {
+    const response = await fetch(`${API_URL}/api/students`, payload);
+    const data = await response.json();
+    return (data);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
