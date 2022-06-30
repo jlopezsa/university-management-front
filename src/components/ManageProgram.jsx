@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Input, Button } from './AtomicComponents';
+import { registerProgram } from '../services/program';
 
 function ManageProgram() {
 
@@ -12,9 +13,10 @@ function ManageProgram() {
     });
   };
 
-  const handleCreateProgram = (e) => {
+  const handleCreateProgram = async (e) => {
     e.preventDefault();
-    console.log('Datos del programa: ', program);
+    const sendProgram = await registerProgram(program);
+    console.log('Datos del programa: ', sendProgram);
   }
 
   return (
@@ -22,9 +24,8 @@ function ManageProgram() {
       <h2>Administración de datos del programa</h2>
       <h4>Ingrese los siguientes datos del programa</h4>
       <form action="">
-        <Input onChange={handleChange} type="text" name="programId" placeholder="Id" />
-        <Input onChange={handleChange} type="text" name="programName" placeholder="Nombre" />
-        <Input onChange={handleChange} type="text" name="programDescription" placeholder="Descripción" />
+        <Input onChange={handleChange} type="text" name="name" placeholder="Nombre" />
+        <Input onChange={handleChange} type="text" name="description" placeholder="Descripción" />
         <Button onClick={handleCreateProgram}>Registrar programa</Button>
       </form>
     </div>
